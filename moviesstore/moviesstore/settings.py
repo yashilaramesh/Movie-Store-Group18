@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "home",
+    'movies'
 ]
 
 MIDDLEWARE = [
@@ -126,7 +127,7 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-#made change here by Vidhi
+# made change here by Vidhi
 STATICFILES_DIRS = [
     BASE_DIR / 'moviesstore/static/',
 ]
