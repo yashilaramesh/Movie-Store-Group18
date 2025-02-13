@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth import login as auth_login, authenticate, logout as auth_logout
 from .forms import CustomUserCreationForm, CustomErrorList
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, PasswordResetForm
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -14,6 +14,15 @@ from django.contrib.auth.hashers import make_password
 def logout(request):
     auth_logout(request)
     return redirect('home.index')
+
+def resetpassword(request):
+    template_data = {}
+    template_data['title'] = 'ResetPassword'
+    if request.method == 'GET':
+        return render(request, 'accounts/resetpassword.html',
+            {'template_data': template_data})
+    #if request.method == 'POST':
+    #    form = PasswordResetForm(request.POST)
 
 def login(request):
     template_data = {}
