@@ -50,8 +50,7 @@
               href="{% url 'accounts.orders' %}">Orders
             </a>
             <a class="nav-link"
-              href="{% url 'accounts.logout' %}">Logout ({{
-              user.username }})</a>
+              href="{% url 'accounts.logout' %}">Logout ({{ user.username }})</a>
             {% else %}
             <a class="nav-link"
                href="{% url 'accounts.login' %}">Login</a>
