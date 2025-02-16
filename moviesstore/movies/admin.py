@@ -13,7 +13,7 @@ class CustomUserAdmin(UserAdmin):
     model = CustomUser
     list_display = ['username', 'email', 'first_name', 'last_name', 'is_staff']
     fieldsets = UserAdmin.fieldsets + (
-        (None, {'fields': ('security_question_1', 'security_answer_1', 'security_question_2', 'security_answer_2')}),
+        (None, {'fields': ('securityQ1', 'securityA1', 'securityQ2', 'securityA2')}),
     )
 
 admin.site.register(Movie, MovieAdmin)
