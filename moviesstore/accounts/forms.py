@@ -65,3 +65,44 @@ class CustomUserCreationForm(UserCreationForm):
         # custom_user = CustomUser.objects.create(user=user, securityQ1=securityQ1, securityA1=securityA1, securityQ2=securityQ2, securityA2=securityA2)
             
         return user
+    
+class ResetPasswordForm(forms.Form):
+    username = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'form-control'}),
+        label="Username"
+    )
+    security_question_1 = forms.ChoiceField(
+        choices=SECURITY_QUESTIONS,
+        widget=forms.Select(attrs={'class': 'form-control'}),
+        label="Security Question 1"
+    )
+    security_answer_1 = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'form-control'}),
+        label="Answer 1"
+    )
+    security_question_2 = forms.ChoiceField(
+        choices=SECURITY_QUESTIONS,
+        widget=forms.Select(attrs={'class': 'form-control'}),
+        label="Security Question 2"
+    )
+    security_answer_2 = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'form-control'}),
+        label="Answer 2"
+    )
+    new_password = forms.CharField(
+        widget=forms.PasswordInput(attrs={'class': 'form-control'}),
+        label="New Password"
+    )
+    confirm_new_password = forms.CharField(
+        widget=forms.PasswordInput(attrs={'class': 'form-control'}),
+        label="Confirm New Password"
+    )
+
+    def clean(self):
+        cleaned_data = super().clean()
+        new_password = cleaned_data.get("new_password")
+        confirm_new_password = cleaned_data.get("confirm_new_password")
+
+        if new_password and confirm_new_password and new_password != confirm_new_password:
+            raise forms.ValidationError("New passwords do not match.")
+        return cleaned_data
